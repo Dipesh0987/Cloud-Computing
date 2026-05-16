@@ -1,0 +1,122 @@
+/* styles.css - simple styling */
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-btn {
+  color: #007bff;
+}
+
+.edit-btn:hover {
+  background-color: #e7f1ff;
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #ffe6e8;
+  transform: scale(1.05);
+}
+
+/* Inline editing styles */
+.editing-row td {
+  padding: 8px;
+  background-color: #fff3cd;
+  vertical-align: middle;
+}
+
+.inline-edit-input, .inline-edit-select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.inline-edit-input:focus, .inline-edit-select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.save-btn, .cancel-btn {
+  padding: 4px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Toast notification */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.toast-notification.error {
+  background-color: #dc3545;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Sort button active state */
+.btn-outline-secondary.active {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Table styling */
+.table th {
+  background-color: #f8f9fa;
+  border-top: none;
+}
+
+.table td {
+  vertical-align: middle;
+}
