@@ -18,6 +18,7 @@ const db = getFirestore(app);
 
 let currentData = [];
 let editingRowId = null;
+let deleteConfirmId = null;
 
 // Sort state: which field and which direction
 let sortField = "movie_name";
@@ -231,10 +232,23 @@ window.cancelEdit = function() {
 };
 
 // ── Delete ─────────────────────────────────────────────
-window.deleteMovie = async function(id) {
+window.deleteMovie = function(id) {
   const movie = currentData.find(m => m.id === id);
   const name  = movie ? movie.movie_name : "this movie";
-  if (!confirm(`Delete "${name}"?`)) return;
+  deleteConfirmId = id;
+  $('#deleteConfirmMessage').text(`Delete "${name}"? This action cannot be undone.`);
+  $('#deleteConfirmModal').addClass('show');
+};
+
+window.confirmDelete = async function() {
+  if (!deleteConfirmId) return;
+  const id = deleteConfirmId;
+  const movie = currentData.find(m => m.id === id);
+  const name  = movie ? movie.movie_name : "this movie";
+  
+  $('#deleteConfirmModal').removeClass('show');
+  deleteConfirmId = null;
+  
   try {
     await deleteDoc(doc(db, "Movie Reviews", id));
     showToast(`"${name}" deleted.`);
@@ -242,6 +256,11 @@ window.deleteMovie = async function(id) {
     console.error(err);
     showToast("Failed to delete. Please try again.", true);
   }
+};
+
+window.cancelDelete = function() {
+  deleteConfirmId = null;
+  $('#deleteConfirmModal').removeClass('show');
 };
 
 // ── Sort dropdown ──────────────────────────────────────
